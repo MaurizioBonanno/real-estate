@@ -1,0 +1,29 @@
+{
+  "name": "real-estate",
+  "version": "1.0.0",
+  "description": "sito per agenzia immobiliare",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {"node":"10.13.0"},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaurizioBonanno/real-estate.git"
+  },
+  "author": "Maurizio Bonanno",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaurizioBonanno/real-estate/issues"
+  },
+  "homepage": "https://github.com/MaurizioBonanno/real-estate#readme",
+  "dependencies": {
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.8"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2"
+  }
+}
