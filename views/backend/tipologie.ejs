@@ -14,7 +14,8 @@
                                   <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Tipo</th>
-                                    <th scope="col">Azioni</th>
+                                    <th scope="col">Modifica</th>
+                                    <th scope="col">Elimina</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -24,7 +25,16 @@
                                <tr>
                                     <th scope="row"><%= tipo._id %></th>
                                     <td><%= tipo.tipologia %></td>
-                                    <td>Otto</td>
+                                    <td>
+                                        <a href="/admin/tipologie/edit/<%= tipo._id %>">
+                                          <i class="fas fa-edit"></i>
+                                        </a>
+                                      </td>
+                                    <td>
+                                      <a href="/admin/tipologie/delete/<%= tipo._id %>">
+                                        <i class="fas fa-trash-alt"></i>
+                                      </a>
+                                    </td>
                                 </tr>
                     
                     

@@ -28,7 +28,6 @@ router.get('/tipologie', function (req, res) {
        if(err) {
          return console.log(err)
         }
-       console.log(tipi);
        res.render('./backend/tipologie.ejs', {
          'tipologie': tipi ,
          'title' : 'tipi di immobili'
@@ -42,7 +41,7 @@ router.get('/tipologie/add', function (req, res) {
   });
 //ROUTER POST tipologie add
 router.post('/tipologie/add',(req,res)=>{
-  
+
       var t = req.body.tipologia;
       console.log(t);
 
@@ -57,5 +56,47 @@ router.post('/tipologie/add',(req,res)=>{
           res.redirect('/admin/tipologie');
         });
   });
+
+  //il form di modifica tipologia
+router.get('/tipologie/edit/:id', function (req, res) {
+  tipologie.findOne( {_id: req.params.id }, (err, tipo)=>{
+    if(err) return console.log(err);
+    res.render('./backend/edit_tipologia.ejs',{
+       'title': 'Modifica Tipologia',
+       'tipologia': tipo.tipologia,
+       'id': tipo._id
+      });
+  }); 
+  
+});
+
+//ROTTA POST di modifica tipologia
+router.post('/tipologie/edit/:id',(req,res)=> {
+  //recupero i dati dalla form
+  const t = req.body.tipologia;
+  const id = req.params.id;
+
+  //recupero la tipologia
+  tipologie.findById(id, (err, tipo)=>{
+       if(err) return console.log(err);
+       tipo.tipologia = t;
+       tipo.save((err)=>{
+          if(err) return console.log(err);
+          res.redirect('/admin/tipologie');
+       });
+  });
+});
+
+//Rotta GET per eliminare una tipologia
+router.get('/tipologie/delete/:id', function (req, res) {
+
+  const id = req.params.id;
+
+    tipologie.findByIdAndRemove( id , (err)=> {
+      if(err) return console.log(err);
+      res.redirect('/admin/tipologie');
+    });
+  
+});
 
 module.exports = router;
