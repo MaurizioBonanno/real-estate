@@ -7,7 +7,9 @@
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "engines": {"node":"10.13.0"},
+  "engines": {
+    "node": "10.13.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MaurizioBonanno/real-estate.git"
@@ -19,9 +21,14 @@
   },
   "homepage": "https://github.com/MaurizioBonanno/real-estate#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "ejs": "^2.7.1",
     "express": "^4.17.1",
-    "mongoose": "^5.7.8"
+    "express-fileupload": "^1.1.6-alpha.6",
+    "fs-extra": "^8.1.0",
+    "mkdirp": "^0.5.1",
+    "mongoose": "^5.7.8",
+    "resize-img": "^2.0.0"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2"

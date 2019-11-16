@@ -2,14 +2,35 @@ var express = require('express');
 var path = require('path');
 var app = express();
 var mongoose = require('mongoose');
+const fileUpload = require('express-fileupload');
+const bodyParser = require('body-parser');
 var config = require('./config/dbase');
+//la rotta di admin per gli immobili
+const admin_route= require('./routes/admin');
+
+
+
+//body-parser middleware
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
+
+//middleware delle rotte admin immobili
+app.use('/admin', admin_route);
+
+
+//express file upload  middleware
+app.use(fileUpload());
 
 //connetto al dbase
-mongoose.connect(config.mongoURI, {useNewUrlParser: true});
+mongoose.connect(config.mongoURI, {
+  useNewUrlParser: true,
+   useUnifiedTopology: true
+});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-  console.log('connesso correttamente al database');
+  console.log('connesso correttamente al database:'+config.mongoURI);
 });
 
 
