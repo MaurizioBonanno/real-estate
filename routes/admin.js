@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const mkdirp = require('mkdirp');
+const fs = require('fs-extra');
+const resizeImg = require('resize-img');
 const tipologie = require('../models/tipologie');
 const immobili = require('../models/immobili');
 
@@ -13,13 +16,25 @@ router.get('/', function (req, res) {
 
 // ROTTA GET di immobili index di admin immobili
 router.get('/immobili', function (req, res) {
-    res.send('admin immobili',{ 'title': 'Immobili'});
+    res.send('admin immobili');
   });
 
-//il form di inserimento di un nuovo immobile
+//ROTTA GET il form di inserimento di un nuovo immobile
 router.get('/immobili/add', function (req, res) {
-    res.send('add immobili', { 'title': 'Nuovo immobile'});
+  tipologie.find((err,tipo)=>{
+    if(err) return console.log(err);
+      res.render('./backend/add_immobile.ejs',{
+      'title':'nuovo immobile',
+      'tipi': tipo
+    });
   });
+
+  });
+
+//ROUTER POST immobili add
+router.post('/immobili/add',function(req,res){
+  res.send(req.body.indirizzo);
+});
 
 //ROTTA GET di tipologie pagina index di admin tipologie
 router.get('/tipologie', function (req, res) {

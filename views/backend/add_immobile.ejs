@@ -1,0 +1,49 @@
+<% include header.ejs %>
+
+<body class="bg-light">
+
+        <% include navbar.ejs %>
+
+
+
+
+        <% include main_body.ejs %>
+
+
+        <main role="main" class="container">
+                <form method="post" action="/admin/immobili/add" enctype="multipart/form-data">
+
+                    <div class="form-group">
+                        <label for="title" class="for">Title</label>
+                        <input type="text" class="form-control" required name="indirizzo" placeholder="Indirizzo">
+                    </div>
+
+                   <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+        </main>
+
+
+
+
+
+
+</body>
+
+        <% include footer.ejs %>
+
+        <script>
+                $jq= jQuery.noConflict();
+                function readURL(input) {
+                    if(input.files && input.files[0]){
+                        var reader = new FileReader();
+                        reader.onload = function(e){
+                          $jq("#imagePreview").attr('src', e.target.result).width(150).height(100);
+                        }
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+                $jq("#img").change(function(){
+                    readURL(this);
+                })
+            </script>

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const ImmobiliSchema = mongoose.Schema({
-    località: {
+    indirizzo: {
         type: String,
         required: true
     },
@@ -11,6 +11,10 @@ const ImmobiliSchema = mongoose.Schema({
     tipologia: {
         type: String,
         required: true 
+    },
+    titolo: {
+        type: String,
+        required: true
     },
     descrizione: {
         type: String,
